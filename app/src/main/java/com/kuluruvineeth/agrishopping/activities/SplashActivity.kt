@@ -1,4 +1,4 @@
-package com.kuluruvineeth.agrishopping
+package com.kuluruvineeth.agrishopping.activities
 
 import android.content.Intent
 import android.graphics.Typeface
@@ -9,6 +9,7 @@ import android.os.Handler
 import android.view.WindowInsets
 import android.view.WindowManager
 import android.widget.TextView
+import com.kuluruvineeth.agrishopping.R
 
 class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
