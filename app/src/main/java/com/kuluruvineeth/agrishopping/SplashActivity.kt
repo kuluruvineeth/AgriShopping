@@ -1,17 +1,20 @@
 package com.kuluruvineeth.agrishopping
 
 import android.content.Intent
+import android.graphics.Typeface
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.view.WindowInsets
 import android.view.WindowManager
+import android.widget.TextView
 
 class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
+        val tv_app_name = findViewById<TextView>(R.id.tv_app_name)
         @Suppress("DEPRECATION")
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
             window.insetsController?.hide(WindowInsets.Type.statusBars())
@@ -31,5 +34,8 @@ class SplashActivity : AppCompatActivity() {
             },
             2500
         )
+
+        val typeface: Typeface = Typeface.createFromAsset(assets,"Montserrat-Bold.ttf")
+        tv_app_name.typeface = typeface
     }
 }
