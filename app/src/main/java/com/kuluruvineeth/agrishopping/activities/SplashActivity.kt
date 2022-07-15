@@ -30,7 +30,7 @@ class SplashActivity : AppCompatActivity() {
         Handler().postDelayed(
             {
                 //Launch the Main Activity
-                startActivity(Intent(this, MainActivity::class.java))
+                startActivity(Intent(this, LoginActivity::class.java))
                 finish() // call this when your activity is done and should be closed
             },
             2500
