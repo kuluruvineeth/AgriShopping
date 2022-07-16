@@ -10,12 +10,15 @@ import android.view.WindowManager
 import android.widget.Button
 import android.widget.CheckBox
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.kuluruvineeth.agrishopping.R
+import com.kuluruvineeth.agrishopping.firestore.FirestoreClass
+import com.kuluruvineeth.agrishopping.models.User
 
 class RegisterActivity : BaseActivity() {
     lateinit var toolbar_register_activity: Toolbar
@@ -143,13 +146,19 @@ class RegisterActivity : BaseActivity() {
                             //Firebase registered user
                             val firebaseUser: FirebaseUser = task.result!!.user!!
 
-                            showErrorSnackBar(
+                            val user = User(
+                                firebaseUser.uid,
+                                et_first_name.text.toString().trim(),
+                                et_last_name.text.toString().trim(),
+                                et_email.text.toString().trim()
+                            )
+                            /*showErrorSnackBar(
                                 "You are registered successfully. Your user id is ${firebaseUser.uid}",
                                 false
-                            )
-
-                            FirebaseAuth.getInstance().signOut()
-                            finish()
+                            )*/
+                            FirestoreClass().registerUser(this,user)
+                            //FirebaseAuth.getInstance().signOut()
+                            //finish()
                         }else{
                             //If the registering is not successful then show error message.
                             showErrorSnackBar(task.exception!!.message.toString(),true)
@@ -157,5 +166,16 @@ class RegisterActivity : BaseActivity() {
                     }
                 )
         }
+    }
+
+    fun userRegistrationSuccess(){
+        //Hide the progress dialog
+        //hideProgressDialog()
+
+        Toast.makeText(
+            this,
+            resources.getString(R.string.register_success),
+            Toast.LENGTH_SHORT
+        )
     }
 }
