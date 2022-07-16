@@ -11,6 +11,7 @@ import android.view.WindowManager
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import com.google.firebase.auth.FirebaseAuth
 import com.kuluruvineeth.agrishopping.R
 
 class LoginActivity : BaseActivity(),View.OnClickListener {
@@ -51,7 +52,8 @@ class LoginActivity : BaseActivity(),View.OnClickListener {
 
                 }
                 R.id.btn_login -> {
-                    validateLoginDetails()
+                    //validateLoginDetails()
+                    logInRegisteredUser()
                 }
                 R.id.tv_register -> {
                     val intent = Intent(this,RegisterActivity::class.java)
@@ -75,9 +77,33 @@ class LoginActivity : BaseActivity(),View.OnClickListener {
                 false
             }
             else -> {
-                showErrorSnackBar("Your details are valid",false)
+                //showErrorSnackBar("Your details are valid",false)
                 true
             }
+        }
+    }
+
+    private fun logInRegisteredUser(){
+        if(validateLoginDetails()){
+            //show the progress dialog
+            //showProgressDialog(resources.getString(R.string.please_wait))
+
+            //Get the text from edittext and trim the space
+            val email = et_email.text.toString().trim()
+            val password = et_password.text.toString().trim()
+
+            //Log-in using FirebaseAuth
+            FirebaseAuth.getInstance().signInWithEmailAndPassword(email,password)
+                .addOnCompleteListener{ task ->
+                    //Hode the progress dialog
+                    //hideProgressDialog()
+
+                    if(task.isSuccessful){
+                        showErrorSnackBar("You are logged in successfully",false)
+                    }else{
+                        showErrorSnackBar(task.exception!!.message.toString(),true)
+                    }
+                }
         }
     }
 }

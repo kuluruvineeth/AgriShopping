@@ -50,8 +50,9 @@ class RegisterActivity : BaseActivity() {
         setupActionBar()
         tv_login.setOnClickListener {
             //Launch Logic screen on click
-            val intent = Intent(this,LoginActivity::class.java)
-            startActivity(intent)
+            /*val intent = Intent(this,LoginActivity::class.java)
+            startActivity(intent)*/
+            onBackPressed()
         }
         btn_register.setOnClickListener{
             registerUser()
