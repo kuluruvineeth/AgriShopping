@@ -32,4 +32,8 @@
     <string name="err_msg_agree_terms_and_condition">Please agree terms and condition.</string>
 
     <string name="please_wait">Please Wait&#8230;</string>
+
+    <string name="title_forgot_password">FORGOT PASSWORD?</string>
+    <string name="forgot_password_title_description">Enter your e-mail address we\'ll send you a email to reset your password</string>
+    <string name="btn_lbl_submit">Submit</string>
 </resources>
