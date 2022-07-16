@@ -10,10 +10,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AgriShopping">
         <activity
-            android:name=".activities.RegisterActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.AgriShopping.NoActionBar"
+            android:name=".activities.BaseActivity"
             android:exported="false" />
+        <activity
+            android:name=".activities.RegisterActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AgriShopping.NoActionBar" />
         <activity
             android:name=".activities.LoginActivity"
             android:exported="false"
