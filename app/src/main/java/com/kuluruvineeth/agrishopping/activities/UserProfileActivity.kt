@@ -27,6 +27,7 @@ class UserProfileActivity : BaseActivity(), View.OnClickListener {
     private lateinit var mUserDetails: User
     private lateinit var rb_male: RadioButton
     private lateinit var rb_female: RadioButton
+    private var mSelectedImageFileUri: Uri? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user_profile)
@@ -79,6 +80,9 @@ class UserProfileActivity : BaseActivity(), View.OnClickListener {
                     }
                 }
                 R.id.btn_submit -> {
+                    //showProgressDialog(resources.getString(R.string.please_wait))
+                    FirestoreClass().uploadImageToCloudStorage(this,mSelectedImageFileUri)
+                    /*
                     if(validateUserProfileDetails()){
                         //showErrorSnackBar("Your details are valid. You can update them.",false)
                         val userHashMap = HashMap<String,Any>()
@@ -95,7 +99,7 @@ class UserProfileActivity : BaseActivity(), View.OnClickListener {
 
                         //showProgressDialog(resources.getString(R.string.please_wait))
                         FirestoreClass().updateUserProfileData(this,userHashMap)
-                    }
+                    }*/
                 }
             }
         }
@@ -141,9 +145,9 @@ class UserProfileActivity : BaseActivity(), View.OnClickListener {
                 if(data!=null){
                     try{
                         //The url of selected image from phone storage.
-                        val selectedImageFileUri = data.data!!
+                        mSelectedImageFileUri = data.data!!
                         //iv_user_photo.setImageURI(selectedImageFileUri)
-                        GlideLoader(this).loadUserPicture(selectedImageFileUri,iv_user_photo)
+                        GlideLoader(this).loadUserPicture(mSelectedImageFileUri!!,iv_user_photo)
                     }catch (e: IOException){
                         e.printStackTrace()
                         Toast.makeText(
@@ -171,5 +175,14 @@ class UserProfileActivity : BaseActivity(), View.OnClickListener {
                 true
             }
         }
+    }
+
+    fun imageUploadSuccess(imageURL: String){
+        //hideProgressDialog()
+        Toast.makeText(
+            this,
+            "Your image is uploaded successfully. Image URL is $imageURL",
+            Toast.LENGTH_SHORT
+        ).show()
     }
 }

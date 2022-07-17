@@ -49,7 +49,7 @@ class LoginActivity : BaseActivity(),View.OnClickListener {
         tv_register.setOnClickListener(this)
     }
 
-    fun userLoggedInSuccess(user: User){
+    fun userLoggedInSuccess(user: User){3
         //Hide the progress dialog.
         //hideProgressDialog()
 
