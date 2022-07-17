@@ -49,14 +49,9 @@ class LoginActivity : BaseActivity(),View.OnClickListener {
         tv_register.setOnClickListener(this)
     }
 
-    fun userLoggedInSuccess(user: User){3
+    fun userLoggedInSuccess(user: User){
         //Hide the progress dialog.
         //hideProgressDialog()
-
-        //Print the user details in the log as of now
-        Log.i("First Name: ", user.firstName)
-        Log.i("Last Name: ", user.lastName)
-        Log.i("Email: ", user.email)
 
         if(user.profileCompleted == 0){
             //If the user profile is incomplete then launch the UserProfileActivity
