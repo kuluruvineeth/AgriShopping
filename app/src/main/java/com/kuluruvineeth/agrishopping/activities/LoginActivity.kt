@@ -16,6 +16,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.kuluruvineeth.agrishopping.R
 import com.kuluruvineeth.agrishopping.firestore.FirestoreClass
 import com.kuluruvineeth.agrishopping.models.User
+import com.kuluruvineeth.agrishopping.utils.Constants
 
 class LoginActivity : BaseActivity(),View.OnClickListener {
     private lateinit var et_email: EditText
@@ -60,6 +61,7 @@ class LoginActivity : BaseActivity(),View.OnClickListener {
         if(user.profileCompleted == 0){
             //If the user profile is incomplete then launch the UserProfileActivity
             val intent = Intent(this,UserProfileActivity::class.java)
+            intent.putExtra(Constants.EXTRA_USER_DETAILS,user)
             startActivity(intent)
         }else{
             //Redirect the user to Main Screen after log in.
