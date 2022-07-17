@@ -1,4 +1,4 @@
-package com.kuluruvineeth.agrishopping.activities
+package com.kuluruvineeth.agrishopping.activities.ui.activities
 
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity

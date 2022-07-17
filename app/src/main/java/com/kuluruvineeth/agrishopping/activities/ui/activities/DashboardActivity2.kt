@@ -1,8 +1,7 @@
-package com.kuluruvineeth.agrishopping.activities
+package com.kuluruvineeth.agrishopping.activities.ui.activities
 
 import android.os.Bundle
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
@@ -11,7 +10,7 @@ import com.kuluruvineeth.agrishopping.R
 //import com.kuluruvineeth.agrishopping.activities.databinding.ActivityDashboard2Binding
 import com.kuluruvineeth.agrishopping.databinding.ActivityDashboard2Binding
 
-class DashboardActivity2 : AppCompatActivity() {
+class DashboardActivity2 : BaseActivity() {
 
     private lateinit var binding: ActivityDashboard2Binding
 
@@ -33,5 +32,9 @@ class DashboardActivity2 : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+    }
+
+    override fun onBackPressed() {
+        doubleBackToExit()
     }
 }

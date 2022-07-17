@@ -10,9 +10,9 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
-import com.kuluruvineeth.agrishopping.activities.LoginActivity
-import com.kuluruvineeth.agrishopping.activities.RegisterActivity
-import com.kuluruvineeth.agrishopping.activities.UserProfileActivity
+import com.kuluruvineeth.agrishopping.activities.ui.activities.LoginActivity
+import com.kuluruvineeth.agrishopping.activities.ui.activities.RegisterActivity
+import com.kuluruvineeth.agrishopping.activities.ui.activities.UserProfileActivity
 import com.kuluruvineeth.agrishopping.models.User
 import com.kuluruvineeth.agrishopping.utils.Constants
 
@@ -20,7 +20,7 @@ class FirestoreClass {
 
     private val mFireStore = FirebaseFirestore.getInstance()
 
-    fun registerUser(activity: RegisterActivity,userInfo: User){
+    fun registerUser(activity: RegisterActivity, userInfo: User){
         // The "users" is collection name. If the collection is already created then it will not create the same
         mFireStore.collection(Constants.USERS)
             //Document ID for users fields. Here the document it is the user ID.

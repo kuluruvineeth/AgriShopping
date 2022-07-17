@@ -1,6 +1,5 @@
-package com.kuluruvineeth.agrishopping.activities
+package com.kuluruvineeth.agrishopping.activities.ui.activities
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText

@@ -1,11 +1,10 @@
-package com.kuluruvineeth.agrishopping.activities
+package com.kuluruvineeth.agrishopping.activities.ui.activities
 
 import android.Manifest
 import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
 import android.util.Log
@@ -124,7 +123,7 @@ class UserProfileActivity : BaseActivity(), View.OnClickListener {
             resources.getString(R.string.msg_profile_update_success),
             Toast.LENGTH_SHORT
         ).show()
-        startActivity(Intent(this,MainActivity::class.java))
+        startActivity(Intent(this, MainActivity::class.java))
         finish()
     }
 

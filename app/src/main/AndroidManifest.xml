@@ -12,34 +12,34 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AgriShopping">
         <activity
-            android:name=".activities.DashboardActivity2"
+            android:name=".activities.ui.activities.DashboardActivity2"
             android:exported="false"
             android:label="@string/app_name" />
         <activity
-            android:name=".activities.UserProfileActivity"
+            android:name=".activities.ui.activities.UserProfileActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AgriShopping.NoActionBar" />
         <activity
-            android:name=".activities.ForgotPasswordActivity"
+            android:name=".activities.ui.activities.ForgotPasswordActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AgriShopping.NoActionBar" />
         <activity
-            android:name=".activities.BaseActivity"
+            android:name=".activities.ui.activities.BaseActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.RegisterActivity"
+            android:name=".activities.ui.activities.RegisterActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AgriShopping.NoActionBar" />
         <activity
-            android:name=".activities.LoginActivity"
+            android:name=".activities.ui.activities.LoginActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AgriShopping.NoActionBar" />
         <activity
-            android:name=".activities.SplashActivity"
+            android:name=".activities.ui.activities.SplashActivity"
             android:exported="true"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AgriShopping.NoActionBar">
@@ -50,7 +50,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activities.MainActivity"
+            android:name=".activities.ui.activities.MainActivity"
             android:exported="true" />
     </application>
 

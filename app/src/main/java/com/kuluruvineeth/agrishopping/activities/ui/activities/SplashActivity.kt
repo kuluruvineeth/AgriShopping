@@ -1,14 +1,12 @@
-package com.kuluruvineeth.agrishopping.activities
+package com.kuluruvineeth.agrishopping.activities.ui.activities
 
 import android.content.Intent
-import android.graphics.Typeface
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.view.WindowInsets
 import android.view.WindowManager
-import android.widget.TextView
 import com.kuluruvineeth.agrishopping.R
 
 class SplashActivity : AppCompatActivity() {
