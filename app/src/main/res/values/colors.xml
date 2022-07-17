@@ -18,4 +18,5 @@
     <color name="colorSnackBarError">#F72400</color>
 
     <color name="colorLightGrey">#F1F1F1</color>
+    <color name="colorAccent">#ED2173</color>
 </resources>
