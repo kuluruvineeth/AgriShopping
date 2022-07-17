@@ -16,6 +16,7 @@ import androidx.core.content.ContextCompat
 import com.kuluruvineeth.agrishopping.R
 import com.kuluruvineeth.agrishopping.models.User
 import com.kuluruvineeth.agrishopping.utils.Constants
+import com.kuluruvineeth.agrishopping.utils.GlideLoader
 import java.io.IOException
 
 class UserProfileActivity : BaseActivity(), View.OnClickListener {
@@ -102,7 +103,8 @@ class UserProfileActivity : BaseActivity(), View.OnClickListener {
                     try{
                         //The url of selected image from phone storage.
                         val selectedImageFileUri = data.data!!
-                        iv_user_photo.setImageURI(selectedImageFileUri)
+                        //iv_user_photo.setImageURI(selectedImageFileUri)
+                        GlideLoader(this).loadUserPicture(selectedImageFileUri,iv_user_photo)
                     }catch (e: IOException){
                         e.printStackTrace()
                         Toast.makeText(
