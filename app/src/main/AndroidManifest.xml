@@ -12,34 +12,37 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AgriShopping">
         <activity
-            android:name="com.kuluruvineeth.agrishopping.ui.activities.DashboardActivity2"
+            android:name=".ui.activities.SettingsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.activities.DashboardActivity2"
             android:exported="false"
             android:label="@string/app_name" />
         <activity
-            android:name="com.kuluruvineeth.agrishopping.ui.activities.UserProfileActivity"
+            android:name=".ui.activities.UserProfileActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AgriShopping.NoActionBar" />
         <activity
-            android:name="com.kuluruvineeth.agrishopping.ui.activities.ForgotPasswordActivity"
+            android:name=".ui.activities.ForgotPasswordActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AgriShopping.NoActionBar" />
         <activity
-            android:name="com.kuluruvineeth.agrishopping.ui.activities.BaseActivity"
+            android:name=".ui.activities.BaseActivity"
             android:exported="false" />
         <activity
-            android:name="com.kuluruvineeth.agrishopping.ui.activities.RegisterActivity"
+            android:name=".ui.activities.RegisterActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AgriShopping.NoActionBar" />
         <activity
-            android:name="com.kuluruvineeth.agrishopping.ui.activities.LoginActivity"
+            android:name=".ui.activities.LoginActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AgriShopping.NoActionBar" />
         <activity
-            android:name="com.kuluruvineeth.agrishopping.ui.activities.SplashActivity"
+            android:name=".ui.activities.SplashActivity"
             android:exported="true"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AgriShopping.NoActionBar">
@@ -50,7 +53,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.kuluruvineeth.agrishopping.ui.activities.MainActivity"
+            android:name=".ui.activities.MainActivity"
             android:exported="true" />
     </application>
 
