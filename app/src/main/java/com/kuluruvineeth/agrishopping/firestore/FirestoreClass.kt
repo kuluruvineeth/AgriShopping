@@ -9,6 +9,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
 import com.kuluruvineeth.agrishopping.activities.LoginActivity
 import com.kuluruvineeth.agrishopping.activities.RegisterActivity
+import com.kuluruvineeth.agrishopping.activities.UserProfileActivity
 import com.kuluruvineeth.agrishopping.models.User
 import com.kuluruvineeth.agrishopping.utils.Constants
 
@@ -88,6 +89,32 @@ class FirestoreClass {
                 Log.e(
                     activity.javaClass.simpleName,
                     "Error while getting user details.",
+                    e
+                )
+            }
+    }
+
+    fun updateUserProfileData(activity: Activity,userHashMap: HashMap<String,Any>){
+        mFireStore.collection(Constants.USERS)
+            .document(getCurrentUserID())
+            .update(userHashMap)
+            .addOnSuccessListener {
+                when(activity){
+                    is UserProfileActivity -> {
+                        activity.userProfileUpdateSuccess()
+                    }
+                }
+            }
+            .addOnFailureListener{e ->
+                when(activity){
+                    is UserProfileActivity -> {
+                        //Hide the progress dialog if there is any error. And print the error in log.
+                        //activity.hideProgressDialog()
+                    }
+                }
+                Log.e(
+                    activity.javaClass.simpleName,
+                    "Error while updating the user details",
                     e
                 )
             }

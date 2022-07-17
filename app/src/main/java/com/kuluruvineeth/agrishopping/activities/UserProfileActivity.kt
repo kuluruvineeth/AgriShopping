@@ -10,13 +10,11 @@ import android.os.Bundle
 import android.text.TextUtils
 import android.util.Log
 import android.view.View
-import android.widget.Button
-import android.widget.EditText
-import android.widget.ImageView
-import android.widget.Toast
+import android.widget.*
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.kuluruvineeth.agrishopping.R
+import com.kuluruvineeth.agrishopping.firestore.FirestoreClass
 import com.kuluruvineeth.agrishopping.models.User
 import com.kuluruvineeth.agrishopping.utils.Constants
 import com.kuluruvineeth.agrishopping.utils.GlideLoader
@@ -26,25 +24,29 @@ import java.io.IOException
 class UserProfileActivity : BaseActivity(), View.OnClickListener {
     private lateinit var iv_user_photo : ImageView
     private lateinit var btn_submit : Button
+    private lateinit var mUserDetails: User
+    private lateinit var rb_male: RadioButton
+    private lateinit var rb_female: RadioButton
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user_profile)
         var et_first_name = findViewById<EditText>(R.id.et_first_name)
         var et_last_name = findViewById<EditText>(R.id.et_last_name)
         var et_email = findViewById<EditText>(R.id.et_email)
+        rb_male = findViewById<RadioButton>(R.id.rb_male)
+        rb_female = findViewById<RadioButton>(R.id.rb_female)
         iv_user_photo = findViewById<ImageView>(R.id.iv_user_photo)
         btn_submit = findViewById<Button>(R.id.btn_submit)
-        var userDetails: User = User()
         if(intent.hasExtra(Constants.EXTRA_USER_DETAILS)){
             //Get the user details from intent as a ParcelableExtra.
-            userDetails = intent.getParcelableExtra(Constants.EXTRA_USER_DETAILS)!!
+            mUserDetails = intent.getParcelableExtra(Constants.EXTRA_USER_DETAILS)!!
         }
         et_first_name.isEnabled = false
-        et_first_name.setText(userDetails.firstName)
+        et_first_name.setText(mUserDetails.firstName)
         et_last_name.isEnabled = false
-        et_last_name.setText(userDetails.lastName)
+        et_last_name.setText(mUserDetails.lastName)
         et_email.isEnabled = false
-        et_email.setText(userDetails.email)
+        et_email.setText(mUserDetails.email)
 
         iv_user_photo.setOnClickListener(this)
         btn_submit.setOnClickListener(this)
@@ -78,11 +80,36 @@ class UserProfileActivity : BaseActivity(), View.OnClickListener {
                 }
                 R.id.btn_submit -> {
                     if(validateUserProfileDetails()){
-                        showErrorSnackBar("Your details are valid. You can update them.",false)
+                        //showErrorSnackBar("Your details are valid. You can update them.",false)
+                        val userHashMap = HashMap<String,Any>()
+                        val mobileNumber = et_mobile_number.text.toString().trim()
+                        val gender = if(rb_male.isChecked){
+                            Constants.MALE
+                        }else{
+                            Constants.FEMALE
+                        }
+                        if(mobileNumber.isNotEmpty()){
+                            userHashMap[Constants.MOBILE] = mobileNumber.toLong()
+                        }
+                        userHashMap[Constants.GENDER] = gender
+
+                        //showProgressDialog(resources.getString(R.string.please_wait))
+                        FirestoreClass().updateUserProfileData(this,userHashMap)
                     }
                 }
             }
         }
+    }
+
+    fun userProfileUpdateSuccess(){
+        //hideProgressDialog()
+        Toast.makeText(
+            this,
+            resources.getString(R.string.msg_profile_update_success),
+            Toast.LENGTH_SHORT
+        ).show()
+        startActivity(Intent(this,MainActivity::class.java))
+        finish()
     }
 
     override fun onRequestPermissionsResult(
