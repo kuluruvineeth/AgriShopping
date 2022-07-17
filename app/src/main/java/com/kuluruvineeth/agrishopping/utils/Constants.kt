@@ -19,6 +19,7 @@ object Constants {
     const val FEMALE: String = "female"
     const val MOBILE: String = "mobile"
     const val GENDER: String = "gender"
+    const val IMAGE: String = "image"
     const val USER_PROFILE_IMAGE: String = "User_Profile_Image"
 
     fun showImageChooser(activity: Activity){
