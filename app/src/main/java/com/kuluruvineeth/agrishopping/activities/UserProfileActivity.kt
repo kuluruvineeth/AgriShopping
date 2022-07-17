@@ -1,7 +1,10 @@
 package com.kuluruvineeth.agrishopping.activities
 
 import android.Manifest
+import android.app.Activity
+import android.content.Intent
 import android.content.pm.PackageManager
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -13,6 +16,7 @@ import androidx.core.content.ContextCompat
 import com.kuluruvineeth.agrishopping.R
 import com.kuluruvineeth.agrishopping.models.User
 import com.kuluruvineeth.agrishopping.utils.Constants
+import java.io.IOException
 
 class UserProfileActivity : BaseActivity(), View.OnClickListener {
     private lateinit var iv_user_photo : ImageView
@@ -50,7 +54,8 @@ class UserProfileActivity : BaseActivity(), View.OnClickListener {
                     )
                         == PackageManager.PERMISSION_GRANTED
                     ){
-                        showErrorSnackBar("You already have the storage permission.",false)
+                        //showErrorSnackBar("You already have the storage permission.",false)
+                        Constants.showImageChooser(this)
                     }else{
                         /*Requests permissions to be granted to this application. These permissions
                         must be requested in manifest file, they should not be granted to your app,
@@ -76,7 +81,8 @@ class UserProfileActivity : BaseActivity(), View.OnClickListener {
         if(requestCode == Constants.READ_STORAGE_PERMISSION_CODE){
             //If permission is granted
             if(grantResults.isNotEmpty() && grantResults[0]==PackageManager.PERMISSION_GRANTED){
-                showErrorSnackBar("The storage permission is granted.",false)
+                //showErrorSnackBar("The storage permission is granted.",false)
+                Constants.showImageChooser(this)
             }else{
                 //Displaying another toast if permission is not granted
                 Toast.makeText(
@@ -84,6 +90,29 @@ class UserProfileActivity : BaseActivity(), View.OnClickListener {
                     resources.getString(R.string.read_storage_permission_denied),
                     Toast.LENGTH_LONG
                 ).show()
+            }
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if(resultCode==Activity.RESULT_OK){
+            if(requestCode == Constants.PICK_IMAGE_REQUEST_CODE){
+                if(data!=null){
+                    try{
+                        //The url of selected image from phone storage.
+                        val selectedImageFileUri = data.data!!
+                        iv_user_photo.setImageURI(selectedImageFileUri)
+                    }catch (e: IOException){
+                        e.printStackTrace()
+                        Toast.makeText(
+                            this,
+                            resources.getString(R.string.image_selection_failed),
+                            Toast.LENGTH_SHORT
+                        )
+                            .show()
+                    }
+                }
             }
         }
     }
