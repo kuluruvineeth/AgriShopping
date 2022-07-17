@@ -1,8 +1,7 @@
-package com.kuluruvineeth.agrishopping.activities.ui.activities
+package com.kuluruvineeth.agrishopping.ui.activities
 
 import android.app.Dialog
 import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
 import android.os.Handler
 import android.widget.TextView
 import android.widget.Toast

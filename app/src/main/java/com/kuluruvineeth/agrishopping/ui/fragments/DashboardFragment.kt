@@ -1,4 +1,4 @@
-package com.kuluruvineeth.agrishopping.activities.ui.fragments
+package com.kuluruvineeth.agrishopping.ui.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
