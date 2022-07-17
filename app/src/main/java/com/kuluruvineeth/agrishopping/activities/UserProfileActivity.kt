@@ -7,7 +7,10 @@ import android.content.pm.PackageManager
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.TextUtils
+import android.util.Log
 import android.view.View
+import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Toast
@@ -17,10 +20,12 @@ import com.kuluruvineeth.agrishopping.R
 import com.kuluruvineeth.agrishopping.models.User
 import com.kuluruvineeth.agrishopping.utils.Constants
 import com.kuluruvineeth.agrishopping.utils.GlideLoader
+import kotlinx.android.synthetic.main.activity_user_profile.*
 import java.io.IOException
 
 class UserProfileActivity : BaseActivity(), View.OnClickListener {
     private lateinit var iv_user_photo : ImageView
+    private lateinit var btn_submit : Button
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user_profile)
@@ -28,6 +33,7 @@ class UserProfileActivity : BaseActivity(), View.OnClickListener {
         var et_last_name = findViewById<EditText>(R.id.et_last_name)
         var et_email = findViewById<EditText>(R.id.et_email)
         iv_user_photo = findViewById<ImageView>(R.id.iv_user_photo)
+        btn_submit = findViewById<Button>(R.id.btn_submit)
         var userDetails: User = User()
         if(intent.hasExtra(Constants.EXTRA_USER_DETAILS)){
             //Get the user details from intent as a ParcelableExtra.
@@ -41,6 +47,7 @@ class UserProfileActivity : BaseActivity(), View.OnClickListener {
         et_email.setText(userDetails.email)
 
         iv_user_photo.setOnClickListener(this)
+        btn_submit.setOnClickListener(this)
     }
 
     override fun onClick(v: View?) {
@@ -67,6 +74,11 @@ class UserProfileActivity : BaseActivity(), View.OnClickListener {
                             arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),
                             Constants.READ_STORAGE_PERMISSION_CODE
                         )
+                    }
+                }
+                R.id.btn_submit -> {
+                    if(validateUserProfileDetails()){
+                        showErrorSnackBar("Your details are valid. You can update them.",false)
                     }
                 }
             }
@@ -115,6 +127,21 @@ class UserProfileActivity : BaseActivity(), View.OnClickListener {
                             .show()
                     }
                 }
+            }
+        }else if(resultCode == Activity.RESULT_CANCELED){
+            //A log is printed when user close or cancel the image selection.
+            Log.e("Request Cancelled","Image selection cancelled")
+        }
+    }
+
+    private fun validateUserProfileDetails(): Boolean{
+        return when{
+            TextUtils.isEmpty(et_mobile_number.text.toString().trim()) -> {
+                showErrorSnackBar(resources.getString(R.string.err_msg_enter_mobile_number),true)
+                false
+            }
+            else -> {
+                true
             }
         }
     }
