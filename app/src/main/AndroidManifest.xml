@@ -13,6 +13,8 @@
         android:theme="@style/Theme.AgriShopping">
         <activity
             android:name=".ui.activities.SettingsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AgriShopping.NoActionBar"
             android:exported="false" />
         <activity
             android:name=".ui.activities.DashboardActivity2"
