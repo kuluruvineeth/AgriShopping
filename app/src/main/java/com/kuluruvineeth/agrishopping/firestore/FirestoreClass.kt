@@ -14,6 +14,7 @@ import com.kuluruvineeth.agrishopping.ui.activities.LoginActivity
 import com.kuluruvineeth.agrishopping.ui.activities.RegisterActivity
 import com.kuluruvineeth.agrishopping.ui.activities.UserProfileActivity
 import com.kuluruvineeth.agrishopping.models.User
+import com.kuluruvineeth.agrishopping.ui.activities.SettingsActivity
 import com.kuluruvineeth.agrishopping.utils.Constants
 
 class FirestoreClass {
@@ -80,12 +81,18 @@ class FirestoreClass {
                         //call a function of base activity for transferring the result to it.
                         activity.userLoggedInSuccess(user)
                     }
+                    is SettingsActivity -> {
+                        activity.userDetailsSuccess(user)
+                    }
                 }
             }
             .addOnFailureListener{e ->
                 //Hide the progress dialog if there is any error. And print the error in log.
                 when(activity){
                     is LoginActivity -> {
+                        //activity.hideProgressDialog()
+                    }
+                    is SettingsActivity -> {
                         //activity.hideProgressDialog()
                     }
                 }
