@@ -12,10 +12,11 @@ import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import com.kuluruvineeth.agrishopping.ui.activities.LoginActivity
 import com.kuluruvineeth.agrishopping.ui.activities.RegisterActivity
-import com.kuluruvineeth.agrishopping.ui.activities.UserProfileActivity
 import com.kuluruvineeth.agrishopping.models.User
 import com.kuluruvineeth.agrishopping.ui.activities.SettingsActivity
 import com.kuluruvineeth.agrishopping.utils.Constants
+import com.kuluruvineeth.agrishopping.ui.activities.UserProfileActivity
+
 
 class FirestoreClass {
 
