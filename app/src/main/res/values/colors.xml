@@ -22,4 +22,6 @@
 
     <color name="colorBorder">#E8E6E6</color>
     <color name="colorDarkGrey">#878787</color>
+
+    <color name="colorImageViewBackground">#E1E1E1</color>
 </resources>
