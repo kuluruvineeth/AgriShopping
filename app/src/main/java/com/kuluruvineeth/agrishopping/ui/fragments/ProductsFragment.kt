@@ -1,5 +1,6 @@
 package com.kuluruvineeth.agrishopping.ui.fragments
 
+import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -34,11 +35,46 @@ class ProductsFragment : BaseFragment() {
     }
 
     fun deleteProduct(productID: String){
+        showAlertDialogToDeleteProduct(productID)
+    }
+
+    private fun showAlertDialogToDeleteProduct(productID: String){
+        val builder = AlertDialog.Builder(requireActivity())
+        //set title for alert dialog
+        builder.setTitle(resources.getString(R.string.delete_dialog_title))
+        //set message for alert dialog
+        builder.setMessage(resources.getString(R.string.delete_dialog_message))
+        builder.setIcon(android.R.drawable.ic_dialog_alert)
+
+        //performing positive action
+        builder.setPositiveButton(resources.getString(R.string.yes)){
+            dialogInterface, _ ->
+            showProgressDialog(resources.getString(R.string.please_wait))
+
+            FirestoreClass().deleteProduct(this,productID)
+            dialogInterface.dismiss()
+        }
+
+        //performing negative action
+        builder.setNegativeButton(resources.getString(R.string.no)){
+            dialogInterface, _ ->
+            dialogInterface.dismiss()
+        }
+        // Create the AlertDialog
+        val alertDialog: AlertDialog = builder.create()
+        //set other dialog properties
+        alertDialog.setCancelable(false)
+        alertDialog.show()
+    }
+
+    fun productDeleteSuccess(){
+        hideProgressDialog()
         Toast.makeText(
             requireActivity(),
-            "You can now delete the product. $productID",
+            resources.getString(R.string.product_delete_success_message),
             Toast.LENGTH_SHORT
         ).show()
+        getProductListFromFireStore()
     }
 
     fun successProductsListFromFireStore(productsList: ArrayList<Product>){
