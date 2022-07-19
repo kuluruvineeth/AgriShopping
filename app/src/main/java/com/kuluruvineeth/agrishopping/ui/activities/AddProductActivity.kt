@@ -2,6 +2,7 @@ package com.kuluruvineeth.agrishopping.ui.activities
 
 import android.Manifest
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
@@ -15,6 +16,7 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.kuluruvineeth.agrishopping.R
 import com.kuluruvineeth.agrishopping.firestore.FirestoreClass
+import com.kuluruvineeth.agrishopping.models.Product
 import com.kuluruvineeth.agrishopping.utils.Constants
 import com.kuluruvineeth.agrishopping.utils.GlideLoader
 import kotlinx.android.synthetic.main.activity_add_product.*
@@ -23,6 +25,7 @@ import java.io.IOException
 
 class AddProductActivity : BaseActivity(), View.OnClickListener {
     private var mSelectedImageFileURI : Uri? = null
+    private var mProductImageURL: String = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_product)
@@ -76,9 +79,36 @@ class AddProductActivity : BaseActivity(), View.OnClickListener {
         FirestoreClass().uploadImageToCloudStorage(this,mSelectedImageFileURI,Constants.PRODUCT_IMAGE)
     }
 
+    fun productUploadSuccess(){
+        //hideProgressDialog()
+        Toast.makeText(
+            this,
+            resources.getString(R.string.product_uploaded_success_message),
+            Toast.LENGTH_SHORT
+        ).show()
+        finish()
+    }
     fun imageUploadSuccess(imageURL: String){
         //hideProgressDialog()
-        showErrorSnackBar("Product image is uploaded successfully. Image URL: $imageURL",false)
+        //showErrorSnackBar("Product image is uploaded successfully. Image URL: $imageURL",false)
+
+        mProductImageURL = imageURL
+        uploadProductDetails()
+    }
+
+    private fun uploadProductDetails(){
+        val username = this.getSharedPreferences(Constants.AGRISHOP_PREFERENCES,Context.MODE_PRIVATE)
+            .getString(Constants.LOGGED_IN_USERNAME,"")!!
+        val product = Product(
+            FirestoreClass().getCurrentUserID(),
+            username,
+            et_product_title.text.toString().trim(),
+            et_product_price.text.toString().trim(),
+            et_product_description.text.toString().trim(),
+            et_product_quantity.text.toString().trim(),
+            mProductImageURL
+        )
+        FirestoreClass().uploadProductDetails(this,product)
     }
 
     override fun onRequestPermissionsResult(

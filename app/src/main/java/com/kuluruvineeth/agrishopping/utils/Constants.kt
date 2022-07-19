@@ -8,7 +8,11 @@ import android.webkit.MimeTypeMap
 
 //kind of singleton design pattern
 object Constants {
+    // Collections in Cloud Firestore
     const val USERS: String = "users"
+    const val PRODUCTS: String = "products"
+
+
     const val AGRISHOP_PREFERENCES: String = "AgriShopPrefs"
     const val LOGGED_IN_USERNAME: String = "logged_in_username"
     const val EXTRA_USER_DETAILS: String = "extra_user_details"
