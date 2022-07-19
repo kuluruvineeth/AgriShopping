@@ -169,7 +169,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.kuluruvineeth.agrishopping.utils.MSPButton
-                android:id="@+id/btn_submit"
+                android:id="@+id/btn_submit_add_product"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
