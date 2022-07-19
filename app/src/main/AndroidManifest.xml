@@ -12,10 +12,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AgriShopping">
         <activity
-            android:name=".ui.activities.AddProductActivity"
+            android:name=".ui.activities.ProductsDetailActivity"
+            android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AgriShopping.NoActionBar"
-            android:exported="false" />
+            />
+        <activity
+            android:name=".ui.activities.AddProductActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AgriShopping.NoActionBar" />
         <activity
             android:name=".ui.activities.SettingsActivity"
             android:exported="false"

@@ -1,12 +1,14 @@
 package com.kuluruvineeth.agrishopping.ui.adapters
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.kuluruvineeth.agrishopping.R
 import com.kuluruvineeth.agrishopping.models.Product
+import com.kuluruvineeth.agrishopping.ui.activities.ProductsDetailActivity
 import com.kuluruvineeth.agrishopping.ui.fragments.ProductsFragment
 import com.kuluruvineeth.agrishopping.utils.GlideLoader
 import kotlinx.android.synthetic.main.item_list_layout.view.*
@@ -36,6 +38,10 @@ open class MyProductsListAdapter(
 
             holder.itemView.ib_delete_product.setOnClickListener{
                 fragment.deleteProduct(model.product_id)
+            }
+            holder.itemView.setOnClickListener{
+                val intent = Intent(context,ProductsDetailActivity::class.java)
+                context.startActivity(intent)
             }
         }
     }
