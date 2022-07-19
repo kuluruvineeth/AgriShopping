@@ -2,6 +2,7 @@ package com.kuluruvineeth.agrishopping.ui.fragments
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import android.widget.TextView
 import androidx.fragment.app.Fragment
@@ -9,9 +10,11 @@ import androidx.lifecycle.ViewModelProvider
 import com.kuluruvineeth.agrishopping.R
 //import com.kuluruvineeth.agrishopping.activities.databinding.FragmentDashboardBinding
 import com.kuluruvineeth.agrishopping.databinding.FragmentDashboardBinding
+import com.kuluruvineeth.agrishopping.firestore.FirestoreClass
+import com.kuluruvineeth.agrishopping.models.Product
 import com.kuluruvineeth.agrishopping.ui.activities.SettingsActivity
 
-class DashboardFragment : Fragment() {
+class DashboardFragment : BaseFragment() {
 
     private var _binding: FragmentDashboardBinding? = null
 
@@ -24,6 +27,11 @@ class DashboardFragment : Fragment() {
         //If we want to use the option menu in fragment we need to add it
         setHasOptionsMenu(true)
     }
+
+    override fun onResume() {
+        super.onResume()
+        getDashboardItemsList()
+    }
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -33,12 +41,6 @@ class DashboardFragment : Fragment() {
 
         _binding = FragmentDashboardBinding.inflate(inflater, container, false)
         val root: View = binding.root
-
-        val textView: TextView = binding.textDashboard
-        /*dashboardViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
-        }*/
-        textView.text = "This is the dashboard fragment"
         return root
     }
 
@@ -61,5 +63,18 @@ class DashboardFragment : Fragment() {
             }
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    fun successDashboardItemsList(dashboardItemsList: ArrayList<Product>){
+        hideProgressDialog()
+        for(i in dashboardItemsList){
+            Log.i("Item Title",i.title)
+        }
+    }
+
+    private fun getDashboardItemsList(){
+        //show the progress dialog.
+        showProgressDialog(resources.getString(R.string.please_wait))
+        FirestoreClass().getDashboardItemsList(this)
     }
 }

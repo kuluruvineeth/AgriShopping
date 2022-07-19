@@ -14,6 +14,7 @@ import com.google.firebase.storage.StorageReference
 import com.kuluruvineeth.agrishopping.models.Product
 import com.kuluruvineeth.agrishopping.models.User
 import com.kuluruvineeth.agrishopping.ui.activities.*
+import com.kuluruvineeth.agrishopping.ui.fragments.DashboardFragment
 import com.kuluruvineeth.agrishopping.ui.fragments.ProductsFragment
 import com.kuluruvineeth.agrishopping.utils.Constants
 
@@ -213,6 +214,28 @@ class FirestoreClass {
                         fragment.successProductsListFromFireStore(productsList)
                     }
                 }
+            }
+    }
+
+    fun getDashboardItemsList(fragment: DashboardFragment){
+        mFireStore.collection(Constants.PRODUCTS)
+            .get()
+            .addOnSuccessListener { document ->
+                Log.e(fragment.javaClass.simpleName,document.documents.toString())
+
+                val productsList: ArrayList<Product> = ArrayList()
+                for(i in document.documents){
+                    val product = i.toObject(Product::class.java)!!
+                    product.product_id = i.id
+                    productsList.add(product)
+                }
+                fragment.successDashboardItemsList(productsList)
+            }
+            .addOnFailureListener{
+                e ->
+                // Hide the progress dialog if there is any error which getting the dashboard items list.
+                fragment.hideProgressDialog()
+                Log.e(fragment.javaClass.simpleName, "Error while getting dashboard items list.",e)
             }
     }
 }
