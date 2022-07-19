@@ -10,6 +10,7 @@ import com.kuluruvineeth.agrishopping.R
 import com.kuluruvineeth.agrishopping.models.Product
 import com.kuluruvineeth.agrishopping.ui.activities.ProductsDetailActivity
 import com.kuluruvineeth.agrishopping.ui.fragments.ProductsFragment
+import com.kuluruvineeth.agrishopping.utils.Constants
 import com.kuluruvineeth.agrishopping.utils.GlideLoader
 import kotlinx.android.synthetic.main.item_list_layout.view.*
 
@@ -41,6 +42,7 @@ open class MyProductsListAdapter(
             }
             holder.itemView.setOnClickListener{
                 val intent = Intent(context,ProductsDetailActivity::class.java)
+                intent.putExtra(Constants.EXTRA_PRODUCT_ID,model.product_id)
                 context.startActivity(intent)
             }
         }
