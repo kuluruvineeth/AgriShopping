@@ -14,6 +14,7 @@ import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.kuluruvineeth.agrishopping.R
+import com.kuluruvineeth.agrishopping.firestore.FirestoreClass
 import com.kuluruvineeth.agrishopping.utils.Constants
 import com.kuluruvineeth.agrishopping.utils.GlideLoader
 import kotlinx.android.synthetic.main.activity_add_product.*
@@ -62,11 +63,22 @@ class AddProductActivity : BaseActivity(), View.OnClickListener {
                 }
                 R.id.btn_submit_add_product -> {
                     if(validateProductDetails()){
-                        showErrorSnackBar("Your product details are valid.",false)
+                        //showErrorSnackBar("Your product details are valid.",false)
+                        uploadProductImage()
                     }
                 }
             }
         }
+    }
+
+    private fun uploadProductImage(){
+        //showProgressDialog(resources.getString(R.string.please_wait))
+        FirestoreClass().uploadImageToCloudStorage(this,mSelectedImageFileURI,Constants.PRODUCT_IMAGE)
+    }
+
+    fun imageUploadSuccess(imageURL: String){
+        //hideProgressDialog()
+        showErrorSnackBar("Product image is uploaded successfully. Image URL: $imageURL",false)
     }
 
     override fun onRequestPermissionsResult(

@@ -10,12 +10,9 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
-import com.kuluruvineeth.agrishopping.ui.activities.LoginActivity
-import com.kuluruvineeth.agrishopping.ui.activities.RegisterActivity
 import com.kuluruvineeth.agrishopping.models.User
-import com.kuluruvineeth.agrishopping.ui.activities.SettingsActivity
+import com.kuluruvineeth.agrishopping.ui.activities.*
 import com.kuluruvineeth.agrishopping.utils.Constants
-import com.kuluruvineeth.agrishopping.ui.activities.UserProfileActivity
 
 
 class FirestoreClass {
@@ -131,10 +128,10 @@ class FirestoreClass {
             }
     }
 
-    fun uploadImageToCloudStorage(activity: Activity, imageFileURI: Uri?){
+    fun uploadImageToCloudStorage(activity: Activity, imageFileURI: Uri?,imageType: String){
         val sRef: StorageReference = FirebaseStorage.getInstance().reference
             .child(
-                Constants.USER_PROFILE_IMAGE + System.currentTimeMillis() + "."
+                imageType + System.currentTimeMillis() + "."
                     + Constants.getFileExtension(
                     activity,
                     imageFileURI
@@ -156,12 +153,18 @@ class FirestoreClass {
                             is UserProfileActivity -> {
                                 activity.imageUploadSuccess(uri.toString())
                             }
+                            is AddProductActivity -> {
+                                activity.imageUploadSuccess(uri.toString())
+                            }
                         }
                     }
             }
             .addOnFailureListener{exception ->
                 when(activity){
                     is UserProfileActivity -> {
+                        //activity.hideProgressDialog()
+                    }
+                    is AddProductActivity -> {
                         //activity.hideProgressDialog()
                     }
                 }

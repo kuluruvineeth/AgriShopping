@@ -127,7 +127,7 @@ class UserProfileActivity : BaseActivity(), View.OnClickListener {
                     if(validateUserProfileDetails()){
                         //showErrorSnackBar("Your details are valid. You can update them.",false)
                         if(mSelectedImageFileUri!=null){
-                            FirestoreClass().uploadImageToCloudStorage(this,mSelectedImageFileUri)
+                            FirestoreClass().uploadImageToCloudStorage(this,mSelectedImageFileUri,Constants.USER_PROFILE_IMAGE)
                         }else{
                             updateUserProfileDetails()
                         }
