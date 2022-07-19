@@ -4,15 +4,19 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.*
+import android.widget.GridLayout
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.GridLayoutManager
 import com.kuluruvineeth.agrishopping.R
 //import com.kuluruvineeth.agrishopping.activities.databinding.FragmentDashboardBinding
 import com.kuluruvineeth.agrishopping.databinding.FragmentDashboardBinding
 import com.kuluruvineeth.agrishopping.firestore.FirestoreClass
 import com.kuluruvineeth.agrishopping.models.Product
 import com.kuluruvineeth.agrishopping.ui.activities.SettingsActivity
+import com.kuluruvineeth.agrishopping.ui.adapters.DashboardItemsListAdapter
+import kotlinx.android.synthetic.main.fragment_dashboard.*
 
 class DashboardFragment : BaseFragment() {
 
@@ -67,8 +71,17 @@ class DashboardFragment : BaseFragment() {
 
     fun successDashboardItemsList(dashboardItemsList: ArrayList<Product>){
         hideProgressDialog()
-        for(i in dashboardItemsList){
-            Log.i("Item Title",i.title)
+        if(dashboardItemsList.size > 0){
+            rv_dashboard_items.visibility = View.VISIBLE
+            tv_no_dashboard_items_found.visibility = View.GONE
+            rv_dashboard_items.layoutManager = GridLayoutManager(activity,2)
+            rv_dashboard_items.setHasFixedSize(true)
+
+            val adapter = DashboardItemsListAdapter(requireActivity(),dashboardItemsList)
+            rv_dashboard_items.adapter = adapter
+        }else{
+            rv_dashboard_items.visibility = View.GONE
+            tv_no_dashboard_items_found.visibility = View.VISIBLE
         }
     }
 
