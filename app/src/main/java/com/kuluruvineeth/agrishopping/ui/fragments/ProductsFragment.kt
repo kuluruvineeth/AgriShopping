@@ -12,7 +12,7 @@ import com.kuluruvineeth.agrishopping.databinding.FragmentProductsBinding
 import com.kuluruvineeth.agrishopping.ui.activities.AddProductActivity
 import com.kuluruvineeth.agrishopping.ui.activities.SettingsActivity
 
-class ProductsFragment : Fragment() {
+class ProductsFragment : BaseFragment() {
 
     private var _binding: FragmentProductsBinding? = null
 
@@ -35,12 +35,10 @@ class ProductsFragment : Fragment() {
 
         _binding = FragmentProductsBinding.inflate(inflater, container, false)
         val root: View = binding.root
-
-        val textView: TextView = binding.textHome
         /*homeViewModel.text.observe(viewLifecycleOwner) {
             textView.text = it
         }*/
-        textView.text = "This is Home Fragment"
+
         return root
     }
 
