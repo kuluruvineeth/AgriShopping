@@ -6,10 +6,12 @@
         <entry key="..\:/Users/kulreddy/Documents/Dev/books/Android/AgriShopping/app/src/main/res/drawable/ic_launcher_foreground.xml" value="0.1" />
         <entry key="..\:/Users/kulreddy/Documents/Dev/books/Android/AgriShopping/app/src/main/res/drawable/ic_vector_chevron_right.xml" value="0.1955" />
         <entry key="..\:/Users/kulreddy/Documents/Dev/books/Android/AgriShopping/app/src/main/res/drawable/ic_vector_dashboard.xml" value="0.1" />
+        <entry key="..\:/Users/kulreddy/Documents/Dev/books/Android/AgriShopping/app/src/main/res/drawable/ic_vector_delete.xml" value="0.1" />
         <entry key="..\:/Users/kulreddy/Documents/Dev/books/Android/AgriShopping/app/src/main/res/drawable/ic_vector_orders.xml" value="0.159" />
         <entry key="..\:/Users/kulreddy/Documents/Dev/books/Android/AgriShopping/app/src/main/res/drawable/ic_vector_products.xml" value="0.159" />
         <entry key="..\:/Users/kulreddy/Documents/Dev/books/Android/AgriShopping/app/src/main/res/drawable/ic_vector_settings.xml" value="0.1" />
         <entry key="..\:/Users/kulreddy/Documents/Dev/books/Android/AgriShopping/app/src/main/res/drawable/item_grey_border_background.xml" value="0.1" />
+        <entry key="..\:/Users/kulreddy/Documents/Dev/books/Android/AgriShopping/app/src/main/res/drawable/rv_item_image_background.xml" value="0.1" />
         <entry key="..\:/Users/kulreddy/Documents/Dev/books/Android/AgriShopping/app/src/main/res/layout/activity_add_product.xml" value="0.1" />
         <entry key="..\:/Users/kulreddy/Documents/Dev/books/Android/AgriShopping/app/src/main/res/layout/activity_dashboard2.xml" value="0.264" />
         <entry key="..\:/Users/kulreddy/Documents/Dev/books/Android/AgriShopping/app/src/main/res/layout/activity_settings.xml" value="0.2" />
@@ -17,6 +19,7 @@
         <entry key="..\:/Users/kulreddy/Documents/Dev/books/Android/AgriShopping/app/src/main/res/layout/fragment_base.xml" value="0.1" />
         <entry key="..\:/Users/kulreddy/Documents/Dev/books/Android/AgriShopping/app/src/main/res/layout/fragment_dashboard.xml" value="0.1" />
         <entry key="..\:/Users/kulreddy/Documents/Dev/books/Android/AgriShopping/app/src/main/res/layout/fragment_products.xml" value="0.1" />
+        <entry key="..\:/Users/kulreddy/Documents/Dev/books/Android/AgriShopping/app/src/main/res/layout/item_list_layout.xml" value="0.1" />
         <entry key="..\:/Users/kulreddy/Documents/Dev/books/Android/AgriShopping/app/src/main/res/menu/add_product_menu.xml" value="0.1" />
         <entry key="..\:/Users/kulreddy/Documents/Dev/books/Android/AgriShopping/app/src/main/res/menu/bottom_nav_menu.xml" value="0.264" />
         <entry key="..\:/Users/kulreddy/Documents/Dev/books/Android/AgriShopping/app/src/main/res/menu/dashboard_menu.xml" value="0.1" />
