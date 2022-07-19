@@ -2,6 +2,7 @@ package com.kuluruvineeth.agrishopping.ui.fragments
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import android.widget.TextView
 import androidx.fragment.app.Fragment
@@ -9,6 +10,8 @@ import androidx.lifecycle.ViewModelProvider
 import com.kuluruvineeth.agrishopping.R
 //import com.kuluruvineeth.agrishopping.activities.databinding.FragmentHomeBinding
 import com.kuluruvineeth.agrishopping.databinding.FragmentProductsBinding
+import com.kuluruvineeth.agrishopping.firestore.FirestoreClass
+import com.kuluruvineeth.agrishopping.models.Product
 import com.kuluruvineeth.agrishopping.ui.activities.AddProductActivity
 import com.kuluruvineeth.agrishopping.ui.activities.SettingsActivity
 
@@ -24,6 +27,23 @@ class ProductsFragment : BaseFragment() {
         super.onCreate(savedInstanceState)
         //If we want to use the option menu in fragment we need to add it
         setHasOptionsMenu(true)
+    }
+
+    fun successProductsListFromFireStore(productsList: ArrayList<Product>){
+        hideProgressDialog()
+        for(i in productsList){
+            Log.i("Product Name",i.title)
+        }
+    }
+
+    private fun getProductListFromFireStore(){
+        showProgressDialog(resources.getString(R.string.please_wait))
+        FirestoreClass().getProductsList(this)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        getProductListFromFireStore()
     }
 
     override fun onCreateView(
