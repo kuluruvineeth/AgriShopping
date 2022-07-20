@@ -16,6 +16,7 @@ open class DashboardItemsListAdapter(
     private var list: ArrayList<Product>
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
+    private var onClickListener: OnClickListener? = null;
     /**
      * Inflates the item views which is designed in xml layout file
      *
@@ -30,6 +31,10 @@ open class DashboardItemsListAdapter(
                 false
             )
         )
+    }
+
+    fun setOnClickListener(onClickListener: OnClickListener){
+        this.onClickListener = onClickListener
     }
 
     /**
@@ -54,6 +59,12 @@ open class DashboardItemsListAdapter(
             )
             holder.itemView.tv_dashboard_item_title.text = model.title
             holder.itemView.tv_dashboard_item_price.text = "$${model.price}"
+
+            holder.itemView.setOnClickListener{
+                if(onClickListener !=null){
+                    onClickListener!!.onClick(position,model)
+                }
+            }
         }
     }
 
@@ -68,4 +79,8 @@ open class DashboardItemsListAdapter(
      * A ViewHolder describes an item view and metadata about its place within the RecyclerView.
      */
     class MyViewHolder(view: View) : RecyclerView.ViewHolder(view)
+
+    interface OnClickListener{
+        fun onClick(position: Int,product: Product)
+    }
 }
