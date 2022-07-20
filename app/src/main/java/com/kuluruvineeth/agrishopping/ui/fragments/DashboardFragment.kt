@@ -86,6 +86,7 @@ class DashboardFragment : BaseFragment() {
                 override fun onClick(position: Int, product: Product) {
                     val intent = Intent(context,ProductsDetailActivity::class.java)
                     intent.putExtra(Constants.EXTRA_PRODUCT_ID,product.product_id)
+                    intent.putExtra(Constants.EXTRA_PRODUCT_OWNER_ID,product.user_id)
                     startActivity(intent)
                 }
             })

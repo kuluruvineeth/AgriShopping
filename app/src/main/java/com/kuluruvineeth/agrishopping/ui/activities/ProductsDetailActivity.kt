@@ -3,6 +3,7 @@ package com.kuluruvineeth.agrishopping.ui.activities
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import com.kuluruvineeth.agrishopping.R
 import com.kuluruvineeth.agrishopping.firestore.FirestoreClass
 import com.kuluruvineeth.agrishopping.models.Product
@@ -22,6 +23,15 @@ class ProductsDetailActivity : BaseActivity() {
             mProductId = intent.getStringExtra(Constants.EXTRA_PRODUCT_ID)!!
             Log.i("Product Id",mProductId)
             getProductDetails()
+        }
+        var productOwnerId : String = ""
+        if(intent.hasExtra(Constants.EXTRA_PRODUCT_OWNER_ID)){
+            productOwnerId = intent.getStringExtra(Constants.EXTRA_PRODUCT_OWNER_ID)!!
+        }
+        if(FirestoreClass().getCurrentUserID() == productOwnerId){
+            btn_add_to_cart.visibility = View.GONE
+        }else{
+            btn_add_to_cart.visibility = View.VISIBLE
         }
     }
 
