@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.Toast
 import com.kuluruvineeth.agrishopping.R
 import com.kuluruvineeth.agrishopping.firestore.FirestoreClass
 import com.kuluruvineeth.agrishopping.models.CartItem
@@ -67,7 +68,7 @@ class ProductsDetailActivity : BaseActivity(),View.OnClickListener {
     }
 
     private fun addToCart(){
-        val addToCart = CartItem(
+        val cartItem = CartItem(
             FirestoreClass().getCurrentUserID(),
             mProductId,
             mProductDetails.title,
@@ -75,6 +76,17 @@ class ProductsDetailActivity : BaseActivity(),View.OnClickListener {
             mProductDetails.image,
             Constants.DEFAULT_CART_QUANTITY
         )
+        //showProgressDialog(resources.getString(R.string.please_wait))
+        FirestoreClass().addCartItems(this,cartItem)
+    }
+
+    fun addToCartSuccess(){
+        //hideProgressDialog()
+        Toast.makeText(
+            this,
+            resources.getString(R.string.success_message_item_added_to_cart),
+            Toast.LENGTH_SHORT
+        ).show()
     }
 
     override fun onClick(v: View?) {

@@ -11,6 +11,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
+import com.kuluruvineeth.agrishopping.models.CartItem
 import com.kuluruvineeth.agrishopping.models.Product
 import com.kuluruvineeth.agrishopping.models.User
 import com.kuluruvineeth.agrishopping.ui.activities.*
@@ -214,6 +215,23 @@ class FirestoreClass {
                         fragment.successProductsListFromFireStore(productsList)
                     }
                 }
+            }
+    }
+
+    fun addCartItems(activity: ProductsDetailActivity, addToCart: CartItem){
+        mFireStore.collection(Constants.CART_ITEMS)
+            .document()
+            .set(addToCart, SetOptions.merge())
+            .addOnSuccessListener {
+                activity.addToCartSuccess()
+            }.addOnFailureListener {
+                e ->
+                //activity.hideProgressDialog()
+                Log.e(
+                    activity.javaClass.simpleName,
+                    "Error while creating the document for cart item",
+                    e
+                )
             }
     }
 
