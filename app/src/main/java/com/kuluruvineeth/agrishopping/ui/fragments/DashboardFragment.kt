@@ -14,6 +14,7 @@ import com.kuluruvineeth.agrishopping.R
 import com.kuluruvineeth.agrishopping.databinding.FragmentDashboardBinding
 import com.kuluruvineeth.agrishopping.firestore.FirestoreClass
 import com.kuluruvineeth.agrishopping.models.Product
+import com.kuluruvineeth.agrishopping.ui.activities.CartListActivity
 import com.kuluruvineeth.agrishopping.ui.activities.ProductsDetailActivity
 import com.kuluruvineeth.agrishopping.ui.activities.SettingsActivity
 import com.kuluruvineeth.agrishopping.ui.adapters.DashboardItemsListAdapter
@@ -65,6 +66,10 @@ class DashboardFragment : BaseFragment() {
         when(id){
             R.id.action_settings -> {
                 startActivity(Intent(activity, SettingsActivity::class.java))
+                return true
+            }
+            R.id.action_cart -> {
+                startActivity(Intent(activity,CartListActivity::class.java))
                 return true
             }
         }
