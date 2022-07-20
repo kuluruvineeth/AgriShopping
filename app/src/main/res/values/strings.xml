@@ -93,4 +93,6 @@
 
     <string name="btn_lbl_add_to_cart">ADD TO CART</string>
     <string name="success_message_item_added_to_cart">Product was added to your cart</string>
+
+    <string name="btn_lbl_go_to_cart">GO TO CART</string>
 </resources>
