@@ -3,6 +3,7 @@ package com.kuluruvineeth.agrishopping.ui.activities
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.kuluruvineeth.agrishopping.R
 import com.kuluruvineeth.agrishopping.firestore.FirestoreClass
@@ -91,6 +92,16 @@ class CartListActivity : BaseActivity() {
         super.onResume()
         //getCartItemsList()
         getProductsList()
+    }
+
+    fun itemRemovedSuccess(){
+        //hideProgressDialog()
+        Toast.makeText(
+            this,
+            resources.getString(R.string.msg_item_removed_successfully),
+            Toast.LENGTH_SHORT
+        ).show()
+        getCartItemsList()
     }
 
     private fun setupActionBar(){
