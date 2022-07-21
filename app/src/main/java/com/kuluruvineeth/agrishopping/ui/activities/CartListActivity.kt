@@ -88,6 +88,11 @@ class CartListActivity : BaseActivity() {
         FirestoreClass().getCartList(this)
     }
 
+    fun itemUpdateSuccess(){
+        //hideProgressDialog()
+        getCartItemsList()
+    }
+
     override fun onResume() {
         super.onResume()
         //getCartItemsList()
