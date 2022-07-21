@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginTop="@dimen/cart_item_marginTop"
-    android:background="@color/white"
+    android:background="@color/colorOffWhite"
     android:orientation="horizontal"
     android:paddingStart="@dimen/cart_item_paddingStartEnd"
     android:paddingTop="@dimen/cart_item_paddingTopBottom"
