@@ -336,4 +336,22 @@ class FirestoreClass {
                 Log.e(fragment.javaClass.simpleName, "Error while getting dashboard items list.",e)
             }
     }
+
+    fun getAllProductsList(activity: CartListActivity){
+        mFireStore.collection(Constants.PRODUCTS)
+            .get()
+            .addOnSuccessListener { document ->
+                Log.e("Products List",document.documents.toString())
+                val productsList: ArrayList<Product> = ArrayList()
+                for(i in document.documents){
+                    val product = i.toObject(Product::class.java)
+                    product!!.product_id = i.id
+                    productsList.add(product)
+                }
+                activity.successProductsListFromFireStore(productsList)
+            }.addOnFailureListener { e ->
+                //activity.hideProgressDialog()
+                Log.e("Get Product List","Error while getting all product list.",e)
+            }
+    }
 }

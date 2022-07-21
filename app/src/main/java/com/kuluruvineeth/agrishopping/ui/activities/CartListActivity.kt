@@ -7,10 +7,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.kuluruvineeth.agrishopping.R
 import com.kuluruvineeth.agrishopping.firestore.FirestoreClass
 import com.kuluruvineeth.agrishopping.models.CartItem
+import com.kuluruvineeth.agrishopping.models.Product
 import com.kuluruvineeth.agrishopping.ui.adapters.CartItemsListAdapter
 import kotlinx.android.synthetic.main.activity_cart_list.*
 
 class CartListActivity : BaseActivity() {
+
+    private lateinit var mProductsList: ArrayList<Product>
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_cart_list)
@@ -53,6 +56,16 @@ class CartListActivity : BaseActivity() {
         }
     }
 
+    fun successProductsListFromFireStore(productsList: ArrayList<Product>){
+        mProductsList = productsList
+        getCartItemsList()
+    }
+
+    private fun getProductsList(){
+        //showProgressDialog(resources.getString(R.string.please_wait))
+        FirestoreClass().getAllProductsList(this)
+    }
+
     private fun getCartItemsList(){
         //showProgressDialog(resources.getString(R.string.please_wait))
         FirestoreClass().getCartList(this)
@@ -60,7 +73,8 @@ class CartListActivity : BaseActivity() {
 
     override fun onResume() {
         super.onResume()
-        getCartItemsList()
+        //getCartItemsList()
+        getProductsList()
     }
 
     private fun setupActionBar(){
