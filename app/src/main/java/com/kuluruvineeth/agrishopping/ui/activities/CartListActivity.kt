@@ -14,6 +14,7 @@ import kotlinx.android.synthetic.main.activity_cart_list.*
 class CartListActivity : BaseActivity() {
 
     private lateinit var mProductsList: ArrayList<Product>
+    private lateinit var mCartListItems: ArrayList<CartItem>
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_cart_list)
@@ -22,7 +23,18 @@ class CartListActivity : BaseActivity() {
 
     fun successCartItemsList(cartList: ArrayList<CartItem>){
         //hideProgressDialog()
-        if(cartList.size > 0){
+        for(product in mProductsList){
+            for(cart in cartList){
+                if(product.product_id == cart.product_id){
+                    cart.stock_quantity = product.stock_quantity
+                    if(product.stock_quantity.toInt() == 0){
+                        cart.cart_quantity = product.stock_quantity
+                    }
+                }
+            }
+        }
+        mCartListItems = cartList
+        if(mCartListItems.size > 0){
             rv_cart_items_list.visibility = View.VISIBLE
             ll_checkout.visibility = View.VISIBLE
             tv_no_cart_item_found.visibility = View.GONE
@@ -32,10 +44,13 @@ class CartListActivity : BaseActivity() {
             val cartListAdapter = CartItemsListAdapter(this,cartList)
             rv_cart_items_list.adapter = cartListAdapter
             var subTotal: Double = 0.0
-            for(item in cartList){
-                val price = item.price.toDouble()
-                val quantity = item.cart_quantity.toInt()
-                subTotal += (price * quantity)
+            for(item in mCartListItems){
+                val availableQuantity = item.stock_quantity.toInt()
+                if(availableQuantity > 0){
+                    val price = item.price.toDouble()
+                    val quantity = item.cart_quantity.toInt()
+                    subTotal += (price * quantity)
+                }
             }
             tv_sub_total.text = "$subTotal"
             tv_shipping_charge.text = "Rs.30.0" //TODO change shipping charge logic
@@ -57,6 +72,7 @@ class CartListActivity : BaseActivity() {
     }
 
     fun successProductsListFromFireStore(productsList: ArrayList<Product>){
+        //hideProgressDialog()
         mProductsList = productsList
         getCartItemsList()
     }
