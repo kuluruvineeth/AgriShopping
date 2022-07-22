@@ -23,6 +23,33 @@ class AddEditAddressActivity : BaseActivity() {
             mAddressDetails = intent.getParcelableExtra(Constants.EXTRA_ADDRESS_DETAILS)
         }
 
+        if(mAddressDetails != null){
+            if(mAddressDetails!!.id.isNotEmpty()){
+                tv_title.text = resources.getString(R.string.title_edit_address)
+                btn_submit_address.text = resources.getString(R.string.btn_lbl_update)
+
+                et_full_name.setText(mAddressDetails?.name)
+                et_phone_number.setText(mAddressDetails?.mobileNumber)
+                et_address.setText(mAddressDetails?.address)
+                et_zip_code.setText(mAddressDetails?.zipCode)
+                et_additional_note.setText(mAddressDetails?.additionalNote)
+
+                when(mAddressDetails?.type){
+                    Constants.HOME -> {
+                        rb_home.isChecked = true
+                    }
+                    Constants.OFFICE -> {
+                        rb_office.isChecked = true
+                    }
+                    else -> {
+                        rb_other.isChecked = true
+                        til_other_details.visibility = View.VISIBLE
+                        et_other_details.setText(mAddressDetails?.otherDetails)
+                    }
+                }
+            }
+        }
+
         btn_submit_address.setOnClickListener {
             saveAddressToFirestore()
         }
@@ -78,15 +105,26 @@ class AddEditAddressActivity : BaseActivity() {
                 addressType,
                 otherDetails
             )
-            FirestoreClass().addAddress(this,addressModel)
+
+            if(mAddressDetails != null && mAddressDetails!!.id.isNotEmpty()){
+                FirestoreClass().updateAddress(this,addressModel,mAddressDetails!!.id)
+            }else{
+                FirestoreClass().addAddress(this,addressModel)
+            }
         }
     }
 
     fun addUpdateAddressSuccess(){
        //hideProgressDialog()
+
+        val notifySuccessMessage: String = if(mAddressDetails != null && mAddressDetails!!.id.isNotEmpty()){
+            resources.getString(R.string.msg_your_address_updated_successfully)
+        }else{
+            resources.getString(R.string.err_your_address_added_successfully)
+        }
         Toast.makeText(
             this,
-            resources.getString(R.string.err_your_address_added_successfully),
+            notifySuccessMessage,
             Toast.LENGTH_SHORT
         ).show()
         finish()
