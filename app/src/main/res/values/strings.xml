@@ -133,4 +133,6 @@
     <string name="title_edit_address">EDIT ADDRESS</string>
     <string name="btn_lbl_update">UPDATE</string>
     <string name="msg_your_address_updated_successfully">Your address is updated successfully</string>
+
+    <string name="err_your_address_deleted_successfully">Your address is deleted successfully.</string>
 </resources>

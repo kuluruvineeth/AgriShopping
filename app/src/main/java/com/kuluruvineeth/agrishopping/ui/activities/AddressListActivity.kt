@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -12,6 +13,7 @@ import com.kuluruvineeth.agrishopping.R
 import com.kuluruvineeth.agrishopping.firestore.FirestoreClass
 import com.kuluruvineeth.agrishopping.models.Address
 import com.kuluruvineeth.agrishopping.ui.adapters.AddressListAdapter
+import com.kuluruvineeth.agrishopping.utils.SwipeToDeleteCallback
 import com.kuluruvineeth.agrishopping.utils.SwipeToEditCallback
 import kotlinx.android.synthetic.main.activity_address_list.*
 
@@ -60,11 +62,30 @@ class AddressListActivity : BaseActivity() {
 
             val editItemTouchHelper = ItemTouchHelper(editSwipeHandler)
             editItemTouchHelper.attachToRecyclerView(rv_address_list)
+
+            val deleteSwipeHandler = object : SwipeToDeleteCallback(this){
+                override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                    FirestoreClass().deleteAddress(this@AddressListActivity,addressList[viewHolder.adapterPosition].id)
+                }
+            }
+            val deleteItemTouchHelper = ItemTouchHelper(deleteSwipeHandler)
+            deleteItemTouchHelper.attachToRecyclerView(rv_address_list)
         }else{
             rv_address_list.visibility = View.GONE
             tv_no_address_found.visibility = View.VISIBLE
         }
     }
+
+    fun deleteAddressSuccess(){
+        //hideProgressDialog()
+        Toast.makeText(
+            this,
+            resources.getString(R.string.err_your_address_deleted_successfully),
+            Toast.LENGTH_SHORT
+        ).show()
+        getAddressList()
+    }
+
     private fun setupActionBar(){
         setSupportActionBar(toolbar_address_list_activity)
 
