@@ -4,9 +4,12 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.kuluruvineeth.agrishopping.R
 import com.kuluruvineeth.agrishopping.firestore.FirestoreClass
 import com.kuluruvineeth.agrishopping.models.Address
+import com.kuluruvineeth.agrishopping.ui.adapters.AddressListAdapter
 import kotlinx.android.synthetic.main.activity_address_list.*
 
 class AddressListActivity : BaseActivity() {
@@ -18,6 +21,10 @@ class AddressListActivity : BaseActivity() {
             val intent = Intent(this,AddEditAddressActivity::class.java)
             startActivity(intent)
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
         getAddressList()
     }
 
@@ -28,8 +35,18 @@ class AddressListActivity : BaseActivity() {
 
     fun successAddressListFromFirestore(addressList: ArrayList<Address>){
         //hideProgressDialog()
-        for(i in addressList){
-            Log.i("Name and Address","${i.name} :: ${i.address}")
+        if(addressList.size > 0){
+            rv_address_list.visibility = View.VISIBLE
+            tv_no_address_found.visibility = View.GONE
+
+            rv_address_list.layoutManager = LinearLayoutManager(this)
+            rv_address_list.setHasFixedSize(true)
+
+            val adapter = AddressListAdapter(this,addressList)
+            rv_address_list.adapter = adapter
+        }else{
+            rv_address_list.visibility = View.GONE
+            tv_no_address_found.visibility = View.VISIBLE
         }
     }
     private fun setupActionBar(){
