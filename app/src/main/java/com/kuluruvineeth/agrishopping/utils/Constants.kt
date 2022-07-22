@@ -44,6 +44,8 @@ object Constants {
     const val OFFICE: String = "Office"
     const val OTHER: String = "Other"
 
+    const val ADDRESSES: String = "addresses"
+
     fun showImageChooser(activity: Activity){
         //An intent for launching the image selection of phone storage
         val galleryIntent = Intent(

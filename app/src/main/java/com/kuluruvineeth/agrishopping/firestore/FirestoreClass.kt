@@ -11,6 +11,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
+import com.kuluruvineeth.agrishopping.models.Address
 import com.kuluruvineeth.agrishopping.models.CartItem
 import com.kuluruvineeth.agrishopping.models.Product
 import com.kuluruvineeth.agrishopping.models.User
@@ -374,6 +375,23 @@ class FirestoreClass {
                 Log.e(
                     context.javaClass.simpleName,
                     "Error while removing the item from the cart list.",
+                    e
+                )
+            }
+    }
+
+    fun addAddress(activity: AddEditAddressActivity,addressInfo: Address){
+        mFireStore.collection(Constants.ADDRESSES)
+            .document()
+            .set(addressInfo, SetOptions.merge())
+            .addOnSuccessListener {
+                activity.addUpdateAddressSuccess()
+            }.addOnFailureListener {
+                e ->
+                //activity.hideProgressDialog()
+                Log.e(
+                    activity.javaClass.simpleName,
+                    "Error while adding the address.",
                     e
                 )
             }
