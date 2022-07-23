@@ -1,12 +1,15 @@
 package com.kuluruvineeth.agrishopping.ui.adapters
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.kuluruvineeth.agrishopping.R
 import com.kuluruvineeth.agrishopping.models.Order
+import com.kuluruvineeth.agrishopping.ui.activities.MyOrderDetailsActivity
+import com.kuluruvineeth.agrishopping.utils.Constants
 import com.kuluruvineeth.agrishopping.utils.GlideLoader
 import kotlinx.android.synthetic.main.item_list_layout.view.*
 
@@ -33,6 +36,12 @@ open class MyOrdersListAdapter(
             holder.itemView.tv_item_price.text = "${model.total_amount}"
 
             holder.itemView.ib_delete_product.visibility = View.GONE
+
+            holder.itemView.setOnClickListener {
+                val intent = Intent(context,MyOrderDetailsActivity::class.java)
+                intent.putExtra(Constants.EXTRA_MY_ORDER_DETAILS,model)
+                context.startActivity(intent)
+            }
         }
     }
 

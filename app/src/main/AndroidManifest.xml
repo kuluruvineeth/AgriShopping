@@ -12,10 +12,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AgriShopping">
         <activity
-            android:name=".ui.activities.CheckoutActivity"
+            android:name=".ui.activities.MyOrderDetailsActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AgriShopping.NoActionBar"
             android:exported="false" />
+        <activity
+            android:name=".ui.activities.CheckoutActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AgriShopping.NoActionBar" />
         <activity
             android:name=".ui.activities.AddEditAddressActivity"
             android:exported="false"
