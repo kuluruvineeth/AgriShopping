@@ -1,5 +1,6 @@
 package com.kuluruvineeth.agrishopping.ui.activities
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -10,6 +11,7 @@ import com.kuluruvineeth.agrishopping.firestore.FirestoreClass
 import com.kuluruvineeth.agrishopping.models.CartItem
 import com.kuluruvineeth.agrishopping.models.Product
 import com.kuluruvineeth.agrishopping.ui.adapters.CartItemsListAdapter
+import com.kuluruvineeth.agrishopping.utils.Constants
 import kotlinx.android.synthetic.main.activity_cart_list.*
 
 class CartListActivity : BaseActivity() {
@@ -20,6 +22,12 @@ class CartListActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_cart_list)
         setupActionBar()
+
+        btn_checkout.setOnClickListener {
+            val intent = Intent(this,AddressListActivity::class.java)
+            intent.putExtra(Constants.EXTRA_SELECT_ADDRESS,true)
+            startActivity(intent)
+        }
     }
 
     fun successCartItemsList(cartList: ArrayList<CartItem>){
