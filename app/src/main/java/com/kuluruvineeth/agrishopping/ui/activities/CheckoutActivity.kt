@@ -2,11 +2,13 @@ package com.kuluruvineeth.agrishopping.ui.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.kuluruvineeth.agrishopping.R
 import com.kuluruvineeth.agrishopping.firestore.FirestoreClass
 import com.kuluruvineeth.agrishopping.models.Address
 import com.kuluruvineeth.agrishopping.models.CartItem
 import com.kuluruvineeth.agrishopping.models.Product
+import com.kuluruvineeth.agrishopping.ui.adapters.CartItemsListAdapter
 import com.kuluruvineeth.agrishopping.utils.Constants
 import kotlinx.android.synthetic.main.activity_checkout.*
 
@@ -49,7 +51,20 @@ class CheckoutActivity : BaseActivity() {
 
     fun successCartItemsList(cartList: ArrayList<CartItem>){
         //hideProgressDialog()
+        for(product in mProductsList){
+            for(cart in cartList){
+                if(product.product_id == cart.product_id){
+                    cart.stock_quantity = product.stock_quantity
+                }
+            }
+        }
         mCartItemsList = cartList
+
+        rv_cart_list_items.layoutManager = LinearLayoutManager(this@CheckoutActivity)
+        rv_cart_list_items.setHasFixedSize(true)
+
+        val cartListAdapter = CartItemsListAdapter(this@CheckoutActivity,mCartItemsList,false)
+        rv_cart_list_items.adapter = cartListAdapter
     }
 
     private fun getProductsList(){
