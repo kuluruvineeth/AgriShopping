@@ -16,6 +16,7 @@ import com.kuluruvineeth.agrishopping.ui.activities.*
 import com.kuluruvineeth.agrishopping.ui.fragments.DashboardFragment
 import com.kuluruvineeth.agrishopping.ui.fragments.OrdersFragment
 import com.kuluruvineeth.agrishopping.ui.fragments.ProductsFragment
+import com.kuluruvineeth.agrishopping.ui.fragments.SoldProductsFragment
 import com.kuluruvineeth.agrishopping.utils.Constants
 
 
@@ -279,6 +280,29 @@ class FirestoreClass {
             }.addOnFailureListener { e ->
                 fragment.hideProgressDialog()
                 Log.e(fragment.javaClass.simpleName,"Error while getting the orders list.",e)
+            }
+    }
+
+    fun getSoldProductsList(fragment: SoldProductsFragment){
+        mFireStore.collection(Constants.SOLD_PRODUCTS)
+            .whereEqualTo(Constants.USER_ID,getCurrentUserID())
+            .get()
+            .addOnSuccessListener { document ->
+                val list: ArrayList<SoldProduct> = ArrayList()
+                for(i in document.documents){
+                    val soldProduct = i.toObject(SoldProduct::class.java)!!
+                    soldProduct.id = i.id
+                    list.add(soldProduct)
+                }
+                fragment.successSoldProductsList(list)
+
+            }.addOnFailureListener { e ->
+                //fragment.hideProgressDialog()
+                Log.e(
+                    fragment.javaClass.simpleName,
+                    "Error while getting the list of sold products",
+                    e
+                )
             }
     }
 
