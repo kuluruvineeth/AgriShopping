@@ -11,10 +11,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
-import com.kuluruvineeth.agrishopping.models.Address
-import com.kuluruvineeth.agrishopping.models.CartItem
-import com.kuluruvineeth.agrishopping.models.Product
-import com.kuluruvineeth.agrishopping.models.User
+import com.kuluruvineeth.agrishopping.models.*
 import com.kuluruvineeth.agrishopping.ui.activities.*
 import com.kuluruvineeth.agrishopping.ui.fragments.DashboardFragment
 import com.kuluruvineeth.agrishopping.ui.fragments.ProductsFragment
@@ -246,6 +243,22 @@ class FirestoreClass {
                     }
                 }
                 Log.e(activity.javaClass.simpleName,"Error while getting the cart list items",e)
+            }
+    }
+
+    fun placeOrder(activity: CheckoutActivity, order:Order){
+        mFireStore.collection(Constants.ORDERS)
+            .document()
+            .set(order, SetOptions.merge())
+            .addOnSuccessListener {
+                activity.orderPlacedSuccess()
+            }.addOnFailureListener { e ->
+                //activity.hideProgressDialog()
+                Log.e(
+                    activity.javaClass.simpleName,
+                    "Error while placing an order",
+                    e
+                )
             }
     }
 
