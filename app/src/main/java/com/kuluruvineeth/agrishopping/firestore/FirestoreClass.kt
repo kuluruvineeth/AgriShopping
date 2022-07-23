@@ -235,6 +235,9 @@ class FirestoreClass {
                     is CartListActivity -> {
                         activity.successCartItemsList(list)
                     }
+                    is CheckoutActivity -> {
+                        activity.successCartItemsList(list)
+                    }
                 }
             }.addOnFailureListener { e ->
                 when(activity){
@@ -338,7 +341,7 @@ class FirestoreClass {
             }
     }
 
-    fun getAllProductsList(activity: CartListActivity){
+    fun getAllProductsList(activity: Activity){
         mFireStore.collection(Constants.PRODUCTS)
             .get()
             .addOnSuccessListener { document ->
@@ -349,7 +352,15 @@ class FirestoreClass {
                     product!!.product_id = i.id
                     productsList.add(product)
                 }
-                activity.successProductsListFromFireStore(productsList)
+                when(activity){
+                    is CartListActivity -> {
+                        activity.successProductsListFromFireStore(productsList)
+                    }
+                    is CheckoutActivity -> {
+                        activity.successProductListFromFireStore(productsList)
+                    }
+                }
+
             }.addOnFailureListener { e ->
                 //activity.hideProgressDialog()
                 Log.e("Get Product List","Error while getting all product list.",e)

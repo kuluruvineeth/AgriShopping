@@ -3,13 +3,18 @@ package com.kuluruvineeth.agrishopping.ui.activities
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.kuluruvineeth.agrishopping.R
+import com.kuluruvineeth.agrishopping.firestore.FirestoreClass
 import com.kuluruvineeth.agrishopping.models.Address
+import com.kuluruvineeth.agrishopping.models.CartItem
+import com.kuluruvineeth.agrishopping.models.Product
 import com.kuluruvineeth.agrishopping.utils.Constants
 import kotlinx.android.synthetic.main.activity_checkout.*
 
-class CheckoutActivity : AppCompatActivity() {
+class CheckoutActivity : BaseActivity() {
 
     private var mAddressDetails: Address? = null
+    private lateinit var mProductsList: ArrayList<Product>
+    private lateinit var mCartItemsList: ArrayList<CartItem>
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_checkout)
@@ -30,7 +35,28 @@ class CheckoutActivity : AppCompatActivity() {
             }
             tv_mobile_number.text = mAddressDetails?.mobileNumber
         }
+        getProductsList()
     }
+
+    fun successProductListFromFireStore(productsList: ArrayList<Product>){
+        mProductsList = productsList
+        getCartItemsList()
+    }
+
+    private fun getCartItemsList(){
+        FirestoreClass().getCartList(this@CheckoutActivity)
+    }
+
+    fun successCartItemsList(cartList: ArrayList<CartItem>){
+        //hideProgressDialog()
+        mCartItemsList = cartList
+    }
+
+    private fun getProductsList(){
+        //showProgressDialog(resources.getString(R.string.please_wait))
+        FirestoreClass().getAllProductsList(this@CheckoutActivity)
+    }
+
     private fun setupActionBar(){
         setSupportActionBar(toolbar_checkout_activity)
 
