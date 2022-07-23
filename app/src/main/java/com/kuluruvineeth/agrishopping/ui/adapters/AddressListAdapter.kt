@@ -49,6 +49,7 @@ open class AddressListAdapter(
             if(selectAddress){
                 holder.itemView.setOnClickListener{
                     val intent = Intent(context,CheckoutActivity::class.java)
+                    intent.putExtra(Constants.EXTRA_SELECTED_ADDRESS,model)
                     context.startActivity(intent)
                 }
             }
