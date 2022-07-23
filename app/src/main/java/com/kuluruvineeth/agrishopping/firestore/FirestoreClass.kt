@@ -14,6 +14,7 @@ import com.google.firebase.storage.StorageReference
 import com.kuluruvineeth.agrishopping.models.*
 import com.kuluruvineeth.agrishopping.ui.activities.*
 import com.kuluruvineeth.agrishopping.ui.fragments.DashboardFragment
+import com.kuluruvineeth.agrishopping.ui.fragments.OrdersFragment
 import com.kuluruvineeth.agrishopping.ui.fragments.ProductsFragment
 import com.kuluruvineeth.agrishopping.utils.Constants
 
@@ -259,6 +260,25 @@ class FirestoreClass {
                     "Error while placing an order",
                     e
                 )
+            }
+    }
+
+    fun getMyOrdersList(fragment: OrdersFragment){
+        mFireStore.collection(Constants.ORDERS)
+            .whereEqualTo(Constants.USER_ID,getCurrentUserID())
+            .get()
+            .addOnSuccessListener { document ->
+                val list: ArrayList<Order> = ArrayList()
+
+                for(i in document.documents){
+                    val orderItem = i.toObject(Order::class.java)!!
+                    orderItem.id = i.id
+                    list.add(orderItem)
+                }
+                fragment.populateOrdersListInUI(list)
+            }.addOnFailureListener { e ->
+                fragment.hideProgressDialog()
+                Log.e(fragment.javaClass.simpleName,"Error while getting the orders list.",e)
             }
     }
 
