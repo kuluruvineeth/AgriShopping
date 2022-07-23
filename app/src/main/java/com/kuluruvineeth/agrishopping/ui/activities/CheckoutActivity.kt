@@ -24,6 +24,7 @@ class CheckoutActivity : BaseActivity() {
     private lateinit var mCartItemsList: ArrayList<CartItem>
     private var mSubTotal: Double = 0.0
     private var mTotalAmount: Double = 0.0
+    private lateinit var mOrderDetails: Order
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_checkout)
@@ -62,7 +63,8 @@ class CheckoutActivity : BaseActivity() {
     }
 
     fun orderPlacedSuccess(){
-        FirestoreClass().updateAllDetails(this,mCartItemsList)
+        FirestoreClass().updateAllDetails(this,mCartItemsList,mOrderDetails)
+
     }
 
     fun successProductListFromFireStore(productsList: ArrayList<Product>){
@@ -77,7 +79,7 @@ class CheckoutActivity : BaseActivity() {
     private fun placeAndOrder(){
         //showProgressDialog(resources.getString(R.string.please_wait))
         if(mAddressDetails != null){
-            val order = Order(
+            mOrderDetails = Order(
                 FirestoreClass().getCurrentUserID(),
                 mCartItemsList,
                 mAddressDetails!!,
@@ -88,7 +90,7 @@ class CheckoutActivity : BaseActivity() {
                 mTotalAmount.toString(),
                 System.currentTimeMillis()
             )
-            FirestoreClass().placeOrder(this,order)
+            FirestoreClass().placeOrder(this,mOrderDetails)
         }
     }
 
