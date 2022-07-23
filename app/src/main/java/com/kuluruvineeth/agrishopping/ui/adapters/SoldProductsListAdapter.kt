@@ -10,6 +10,7 @@ import com.kuluruvineeth.agrishopping.R
 import com.kuluruvineeth.agrishopping.models.Product
 import com.kuluruvineeth.agrishopping.models.SoldProduct
 import com.kuluruvineeth.agrishopping.ui.activities.ProductsDetailActivity
+import com.kuluruvineeth.agrishopping.ui.activities.SoldProductsDetailsActivity
 import com.kuluruvineeth.agrishopping.ui.fragments.ProductsFragment
 import com.kuluruvineeth.agrishopping.utils.Constants
 import com.kuluruvineeth.agrishopping.utils.GlideLoader
@@ -39,6 +40,12 @@ open class SoldProductsListAdapter(
             holder.itemView.tv_item_price.text = "${model.price}"
 
             holder.itemView.ib_delete_product.visibility = View.GONE
+
+            holder.itemView.setOnClickListener {
+                val intent = Intent(context,SoldProductsDetailsActivity::class.java)
+                intent.putExtra(Constants.EXTRA_SOLD_PRODUCT_DETAILS,model)
+                context.startActivity(intent)
+            }
         }
     }
 
