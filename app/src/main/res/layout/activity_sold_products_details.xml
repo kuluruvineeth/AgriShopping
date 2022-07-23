@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorOffWhite"
     tools:context=".ui.activities.SoldProductsDetailsActivity">
 
     <androidx.appcompat.widget.Toolbar
@@ -80,7 +81,7 @@
                         android:textSize="@dimen/sold_details_label_value_textSize" />
 
                     <com.kuluruvineeth.agrishopping.utils.MSPTextView
-                        android:id="@+id/tv_order_details_id"
+                        android:id="@+id/tv_sold_product_details_id"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textAlignment="center"
@@ -103,7 +104,7 @@
                         android:textSize="@dimen/sold_details_label_value_textSize" />
 
                     <com.kuluruvineeth.agrishopping.utils.MSPTextView
-                        android:id="@+id/tv_order_details_date"
+                        android:id="@+id/tv_sold_product_details_date"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textAlignment="center"
@@ -179,6 +180,19 @@
                         android:textStyle="bold"
                         tools:text="Rs100.00" />
                 </LinearLayout>
+                <com.kuluruvineeth.agrishopping.utils.MSPTextView
+                    android:id="@+id/tv_sold_product_quantity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/item_grey_border_background"
+                    android:paddingStart="@dimen/cart_quantity_paddingStartEnd"
+                    android:paddingTop="@dimen/cart_quantity_paddingTopBottom"
+                    android:paddingEnd="@dimen/cart_quantity_paddingStartEnd"
+                    android:paddingBottom="@dimen/cart_quantity_paddingTopBottom"
+                    android:textColor="@color/colorSecondaryText"
+                    android:textSize="@dimen/cart_quantity_textSize"
+                    android:textStyle="bold"
+                    tools:text="1" />
             </LinearLayout>
 
 
