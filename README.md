@@ -1,6 +1,10 @@
-# AgriShopping
+# AgriShopping  🌳
 
-An Agrishopping is flexible agri-commerce application that can be used to create your own store and sell and buy the products related to agriculture.
+An Agrishopping is flexible agri-commerce application that can be used to create your own store and sell and buy the products related to agriculture. *Made with love ❤️ by [Kuluruvineeth](https://github.com/kuluruvineeth)*
+
+***Try latest AgriShopping app from below 👇***
+
+[![AgriShopping](https://img.shields.io/badge/AgriShopping-Live-green)](https://play.google.com/store/apps/details?id=com.kuluruvineeth.agrishopping)
 
 ## Overview
 
