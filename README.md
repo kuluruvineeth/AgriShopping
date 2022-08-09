@@ -6,6 +6,25 @@ An Agrishopping is flexible agri-commerce application that can be used to create
 
 [![AgriShopping](https://img.shields.io/badge/AgriShopping-Live-green)](https://play.google.com/store/apps/details?id=com.kuluruvineeth.agrishopping)
 
+<br />
+
+## Preview 🌞
+Splash Screen | Register | Login | Dashboard | Product Details 
+--- | --- | --- |--- |--- 
+![](https://github.com/kuluruvineeth/AgriShopping/blob/master/Screenshots/0_splashScreen.jpg) | ![](https://github.com/kuluruvineeth/AgriShopping/blob/master/Screenshots/1_register.jpg) | ![](https://github.com/kuluruvineeth/AgriShopping/blob/master/Screenshots/2_login.jpg) | ![](https://github.com/kuluruvineeth/AgriShopping/blob/master/Screenshots/3_dashboard.jpg) | ![](https://github.com/kuluruvineeth/AgriShopping/blob/master/Screenshots/4_productDetails.jpg)
+Go To Cart | CheckOut | Orders | User Profile | Edit Profile 
+![](https://github.com/kuluruvineeth/AgriShopping/blob/master/Screenshots/5_productDetails_goToCart.jpg) | ![](https://github.com/kuluruvineeth/AgriShopping/blob/master/Screenshots/6_checkout.jpg) | ![](https://github.com/kuluruvineeth/AgriShopping/blob/master/Screenshots/7_orders.jpg) | ![](https://github.com/kuluruvineeth/AgriShopping/blob/master/Screenshots/8_userProfile.jpg) | ![](https://github.com/kuluruvineeth/AgriShopping/blob/master/Screenshots/9_editProfile.jpg)
+Addresses List | Add Address | My Cart | Products List | Add Product 
+![](https://github.com/kuluruvineeth/AgriShopping/blob/master/Screenshots/10_addresslist.jpg) | ![](https://github.com/kuluruvineeth/AgriShopping/blob/master/Screenshots/11_addAddress.jpg) | ![](https://github.com/kuluruvineeth/AgriShopping/blob/master/Screenshots/12_myCart.jpg) | ![](https://github.com/kuluruvineeth/AgriShopping/blob/master/Screenshots/14_productsList.jpg) | ![](https://github.com/kuluruvineeth/AgriShopping/blob/master/Screenshots/16_addProduct.jpg)
+Orders List | Order Details | Sold Products Details | Sold Products List 
+![](https://github.com/kuluruvineeth/AgriShopping/blob/master/Screenshots/17_ordersList.jpg) | ![](https://github.com/kuluruvineeth/AgriShopping/blob/master/Screenshots/18_orderDetails.jpg) | ![](https://github.com/kuluruvineeth/AgriShopping/blob/master/Screenshots/20_soldProductDetails.jpg) | ![](https://github.com/kuluruvineeth/AgriShopping/blob/master/Screenshots/21_soldProductsList.jpg)
+
+<br />
+
+## Built With 🛠
+- [Kotlin](https://kotlinlang.org/) - First class and official programming language for Android development.
+- 
+
 ## Overview
 
 - [x] Used Firebase Authentication,Firebase Storage, Firebase Firestore.
@@ -24,31 +43,6 @@ An Agrishopping is flexible agri-commerce application that can be used to create
 - **Glide** - Image loader
 - Swiping for editing and deleting
 - Many More....
-
-## Android Screenshots
-
-
-<img src="https://github.com/kuluruvineeth/AgriShopping/blob/master/Screenshots/0_splashScreen.jpg" width="300" height="500" />&nbsp;&nbsp;&nbsp;&nbsp;
-<img src="https://github.com/kuluruvineeth/AgriShopping/blob/master/Screenshots/1_register.jpg" width="300" height="500">&nbsp;&nbsp;&nbsp;&nbsp;
-<img src="https://github.com/kuluruvineeth/AgriShopping/blob/master/Screenshots/2_login.jpg" width="300" height="500" />&nbsp;&nbsp;&nbsp;&nbsp;
-<img src="https://github.com/kuluruvineeth/AgriShopping/blob/master/Screenshots/3_dashboard.jpg" width="300" height="500" />&nbsp;&nbsp;&nbsp;&nbsp;
-<img src="https://github.com/kuluruvineeth/AgriShopping/blob/master/Screenshots/4_productDetails.jpg" width="300" height="500" />&nbsp;&nbsp;&nbsp;&nbsp;
-<img src="https://github.com/kuluruvineeth/AgriShopping/blob/master/Screenshots/5_productDetails_goToCart.jpg" width="300" height="500" />&nbsp;&nbsp;&nbsp;&nbsp;
-<img src="https://github.com/kuluruvineeth/AgriShopping/blob/master/Screenshots/6_checkout.jpg" width="300" height="500" />&nbsp;&nbsp;&nbsp;&nbsp;
-<img src="https://github.com/kuluruvineeth/AgriShopping/blob/master/Screenshots/7_orders.jpg" width="300" height="500" />&nbsp;&nbsp;&nbsp;&nbsp;
-<img src="https://github.com/kuluruvineeth/AgriShopping/blob/master/Screenshots/8_userProfile.jpg" width="300" height="500" />&nbsp;&nbsp;&nbsp;&nbsp;
-<img src="https://github.com/kuluruvineeth/AgriShopping/blob/master/Screenshots/9_editProfile.jpg" width="300" height="500" />&nbsp;&nbsp;&nbsp;&nbsp;
-<img src="https://github.com/kuluruvineeth/AgriShopping/blob/master/Screenshots/10_addresslist.jpg" width="300" height="500" />&nbsp;&nbsp;&nbsp;&nbsp;
-<img src="https://github.com/kuluruvineeth/AgriShopping/blob/master/Screenshots/11_addAddress.jpg" width="300" height="500" />&nbsp;&nbsp;&nbsp;&nbsp;
-<img src="https://github.com/kuluruvineeth/AgriShopping/blob/master/Screenshots/12_myCart.jpg" width="300" height="500" />&nbsp;&nbsp;&nbsp;&nbsp;
-<img src="https://github.com/kuluruvineeth/AgriShopping/blob/master/Screenshots/13_dashboard.jpg" width="300" height="500" />&nbsp;&nbsp;&nbsp;&nbsp;
-<img src="https://github.com/kuluruvineeth/AgriShopping/blob/master/Screenshots/14_productsList.jpg" width="300" height="500" />&nbsp;&nbsp;&nbsp;&nbsp;
-<img src="https://github.com/kuluruvineeth/AgriShopping/blob/master/Screenshots/15_productDetails.jpg" width="300" height="500" />&nbsp;&nbsp;&nbsp;&nbsp;
-<img src="https://github.com/kuluruvineeth/AgriShopping/blob/master/Screenshots/16_addProduct.jpg" width="300" height="500" />&nbsp;&nbsp;&nbsp;&nbsp;
-<img src="https://github.com/kuluruvineeth/AgriShopping/blob/master/Screenshots/17_ordersList.jpg" width="300" height="500" />&nbsp;&nbsp;&nbsp;&nbsp;
-<img src="https://github.com/kuluruvineeth/AgriShopping/blob/master/Screenshots/18_orderDetails.jpg" width="300" height="500" />&nbsp;&nbsp;&nbsp;&nbsp;
-<img src="https://github.com/kuluruvineeth/AgriShopping/blob/master/Screenshots/20_soldProductDetails.jpg" width="300" height="500" />&nbsp;&nbsp;&nbsp;&nbsp;
-<img src="https://github.com/kuluruvineeth/AgriShopping/blob/master/Screenshots/21_soldProductsList.jpg" width="300" height="500" />&nbsp;&nbsp;&nbsp;&nbsp;
 
 
 ## Firebase Screenshots
