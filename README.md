@@ -23,13 +23,12 @@ Orders List | Order Details | Sold Products Details | Sold Products List
 
 ## Built With 🛠
 - [Kotlin](https://kotlinlang.org/) - First class and official programming language for Android development.
-- 
-
-## Overview
-
-- [x] Used Firebase Authentication,Firebase Storage, Firebase Firestore.
-- [x] Created User Profile
-- [x] Built Cart System, Order Screen, Checkout Screen and Others.
+- [Firebase](https://firebase.google.com/docs/android/setup) - For Authentication, Database, Storage and more...
+- [Android Architecture Components](https://developer.android.com/topic/libraries/architecture) - Collection of libraries that help you design robust, testable, and maintainable apps.
+  - [LiveData](https://developer.android.com/topic/libraries/architecture/livedata) - Observable data holder class aware of components lifecycle.
+  - [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel) - Stores UI-related data that isn't destroyed on Configuration changes.
+  - [Jetpack Navigation](https://developer.android.com/guide/navigation) - Navigation refers to the interactions that allow users to navigate across, into, and back out from the different pieces of content(fragments) within your app
+- [Glide](https://github.com/bumptech/glide) - Fast and Efficient open source media management and image loading framework.
 
 ## Android Topics Leveraged while building this application
 
